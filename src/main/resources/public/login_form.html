@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$(function(){
+				$("#loginSub").linkbutton({
+					iconCls:"icon-ok",
+					onClick:function(){
+						$("#loginForm").form("submit",{
+							url:"",
+							success:function(data){
+								console.log(data);
+								if(data=="true"){
+									location.href="";
+								}else{
+									$("#erroy").text("用户名或密码错误");
+								}
+							}
+						});
+					}
+				});
+				$("#loginRet").linkbutton({
+					iconCls:"icon-reload"
+				});
+			});
+		</script>
+		<form id="loginForm" method="post" style="text-align:center"> 
+			<span style="color:red" id="erroy"></span>
+			<table align="center">
+				<tr>
+					<td style="text-align:right">用户名:</td>
+					<td><input class="easyui-textbox" name="username"/></td>
+				</tr>
+				<tr>
+					<td style="text-align:right">密码:</td>
+					<td><input class="easyui-textbox" name="password" type="password"/></td>
+				</tr>
+			</table>
+			<a id="loginSub">登陆</a><a id="loginRet">重置</a>
+		</form>
+	</body>
+</html>

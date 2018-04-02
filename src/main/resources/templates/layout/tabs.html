@@ -1,0 +1,22 @@
+<%@page pageEncoding="UTF-8"%>
+
+<html>
+	<head>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$(function(){
+				$("#tabs1").tabs({
+					fit:true,
+					onAdd:function(title,idx){
+					},
+					onSelect:function(title,idx){
+					}
+				});
+			});
+		</script>
+		<div id="tabs1">
+			<div title="主页" data-options="tabWidth:200,cache:false" ><img height="100%" width="100%" src="${pageContext.request.contextPath}/image/logo.jpg"/></div>
+		</div>		
+	</body>
+</html>

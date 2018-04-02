@@ -1,0 +1,36 @@
+<%@page pageEncoding="UTF-8"%>
+<%@taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
+
+<html>
+	<head>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$(function(){
+				$("#menu").tree({
+					url:"${pageContext.request.contextPath}/menu/queryMenu?username=<shiro:principal></shiro:principal>",
+					onClick:function(node){
+						if($("#tabs1").tabs("getTab",node.text)==null){
+							var tabs = $("#tabs1").tabs("tabs");
+							if(node.url==null){
+								
+							}else{
+								$("#tabs1").tabs("add",{
+									title:node.text,
+									tabWidth:300,
+									closable:true,
+									href:"${pageContext.request.contextPath}/"+node.url
+								});	
+							}
+						}else{
+							$("#tabs1").tabs("select",node.text);
+						}
+					}
+				});
+			});
+		</script>
+		<ul id="menu">
+		</ul>
+		
+	</body>
+</html>

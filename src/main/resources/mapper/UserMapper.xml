@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.codepower.login.dao.UserDao">
+	
+	<!-- 查询所有用户 -->
+	<select id="selectUserAll" resultType="User">
+		select 
+			* 
+		from 
+			cop_user
+	</select>
+	
+	<!-- 根据用户名查询用户 -->
+	<select id="selectUserByUsername" resultType="User" parameterType="String">
+		select 
+			* 
+		from 
+			cop_user
+		where 
+			username = #{username}
+	</select>
+	
+	<!-- 根据id查询用户 -->
+	<select id="selectUserById" resultType="User" parameterType="String">
+		select 
+			* 
+		from 
+			cop_user
+		where
+			id = #{id}
+	</select>
+	
+	<!-- 根据状态查询用户 -->
+	<select id="selectUserByState" resultType="User" parameterType="String">
+		select 
+			* 
+		from 
+			cop_user
+		where
+			state = #{state}
+	</select>
+	
+	<!-- 添加用户 -->
+	<insert id="insertUser" parameterType="User">
+		insert into 
+			cop_user
+		values
+			(#{id},#{userName},#{password},#{name},#{sex},#{birthday},#{city},#{qq},#{weChat},#{email},#{mobile},#{regTime},#{state})
+	</insert>
+	
+	<!-- 修改用户 -->
+	<update id="updateUser" parameterType="User">
+		update 
+			cop_user
+		set
+			username=#{user.userName},password=#{user.password},name=#{user.name},sex=#{user.sex},birthday=#{user.birthday},city=#{user.city},qq=#{user.qq},weChat=#{weChat},email=#{user.email},mobile=#{user.mobile},regTime=#{user.regTime},state=#{user.state}
+		where 
+			id=#{user.id}
+	</update>
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.codepower.content.dao.ArticleDao">
+
+	<!-- 根据id查询文章 -->
+	<select id="selectArticleById" parameterType="String"
+		resultType="Article">
+		select
+			*
+		from
+			cop_article
+		where
+			id=#{id}
+	</select>
+
+	<!-- 查询所有文章 -->
+	<select id="selectArticleAll" resultMap="articleResult">
+		select
+			a.id aId,a.userId aUserId,a.title aTitle,
+			a.content aContent,a.createTime aCreateTime,
+			a.updateTime aUpdateTime,a.state aState,
+			u.id uId,u.name uName
+		from
+			cop_article a,cop_user u
+		where 
+			a.userId = u.id
+	</select>
+
+     
+
+	<!-- 根据用户id查询文章 -->
+	<select id="selectArticleByUserId" parameterType="String"
+		resultType="Article">
+		select
+			*
+		from
+		    cop_article
+		where
+		    userId = #{userId}
+	</select>
+
+	<!-- 根据状态查询文章 -->
+	<select id="selectArticleByState" parameterType="String"
+		resultType="Article">
+		select
+		    *
+		from
+		    cop_article
+		where
+		    state=#{state}
+	</select>
+
+	<!-- 添加文章 -->
+	<insert id="insertArticle" parameterType="Article">
+		insert into
+		    cop_article
+		values
+		    (#{id},#{userId},#{title},#{content},#{createTime},#{updateTime},#{state})
+	</insert>
+
+	<!-- 修改文章 -->
+	<update id="updateArticle" parameterType="Article">
+		update
+		    cop_article
+		set
+		    id=#{id},userId=#{userId},title=#{title},content=#{content},createTime=#{createTime},updateTime=#{updateTime},state=#{state}
+	</update>
+
+    <!-- 返回的字段数据 -->
+	<resultMap type="Article" id="articleResult">
+		<id column="aId" property="id" />
+		<result column="aUserId" property="userId" />
+		<result column="aTitle" property="title" />
+		<result column="aContent" property="content" />
+		<result column="aCreateTime" property="createTime" />
+		<result column="aState" property="state" />
+		<association property="user" javaType="User">
+			<id column="uId" property="id" />
+			<result column="uName" property="name" />
+		</association>
+	</resultMap>
+
+</mapper>
