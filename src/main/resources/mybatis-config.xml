@@ -13,6 +13,7 @@
         <!-- 自定义实体类 --> 
         <typeAlias alias="User" type="cn.com.codepower.login.entity.User"/>
         <typeAlias alias="Article" type="cn.com.codepower.content.entity.Article"/>
+        <typeAlias alias="Tree" type="cn.com.codepower.main.dao.TreeDao"/>
     </typeAliases>
     
     <plugins>

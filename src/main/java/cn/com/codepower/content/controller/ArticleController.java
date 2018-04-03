@@ -27,8 +27,6 @@ import cn.com.codepower.login.entity.User;
 @RequestMapping("/article")
 public class ArticleController {
 	
-	private static final int BiConsumer = 0;
-
 	private Logger logger = LoggerFactory.getLogger(ArticleController.class);
 	
 	@Autowired

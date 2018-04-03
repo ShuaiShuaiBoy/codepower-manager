@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.codepower.main.dao.TreeDao">
+
+	<!-- 查询所有菜单 -->
+	<select id="selectTreeAll" resultMap="treeMap">
+		select
+		    t1.id id1,t1.name name1,t1.url url1,t1.icon icon1,t2.id id2,t2.name
+		    name2,t2.url url2,t2.icon icon2
+		from
+		    cop_tree t1
+		left join
+		    cop_tree t2
+		on
+		    t1.id=t2.parentId
+		where
+		    t1.parentId=0
+	</select>
+	
+	<!-- 添加菜单 -->
+	<insert id="insertTree" parameterType="Tree">
+	    insert into
+	        cop_tree
+	    values
+	        (#{id},#{name},#{url},#{icon},#{parentId},#{state})
+	</insert>
+	
+	<!-- 修改菜单 -->
+	<update id="updateTree" parameterType="Tree">
+	    update
+	        cop_tree
+	    set
+	        id=#{id},name=#{name},url=#{url},icon=#{icon},parentId=#{parentId},state=#{state}
+	</update>
+
+	<resultMap type="Tree" id="treeMap">
+		<id column="id1" property="id" />
+		<result column="name1" property="name" />
+		<result column="url1" property="url" />
+		<result column="icon1" property="icon" />
+		<collection property="tree" ofType="Tree">
+			<id column="id2" property="id" />
+			<result column="name2" property="name" />
+			<result column="url2" property="url" />
+			<result column="icon2" property="icon" />
+		</collection>
+	</resultMap>
+</mapper>
