@@ -9,7 +9,7 @@
 					iconCls:"icon-ok",
 					onClick:function(){
 						$("#loginForm").form("submit",{
-							url:"",
+							url:"/login",
 							success:function(data){
 								console.log(data);
 								if(data=="true"){
@@ -31,7 +31,7 @@
 			<table align="center">
 				<tr>
 					<td style="text-align:right">用户名:</td>
-					<td><input class="easyui-textbox" name="username"/></td>
+					<td><input class="easyui-textbox" name="userName"/></td>
 				</tr>
 				<tr>
 					<td style="text-align:right">密码:</td>
